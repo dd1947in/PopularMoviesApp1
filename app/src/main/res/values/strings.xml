@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MovieApp1</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="switch_movie_list">Switch Movie List</string>
+    <string name="movie_db_api_key">MOVIE_DB_V3_API_KEY</string>
+
+</resources>
