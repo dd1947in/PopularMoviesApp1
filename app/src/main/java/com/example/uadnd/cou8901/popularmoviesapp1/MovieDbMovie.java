@@ -1,10 +1,10 @@
+/*
+ * Copyright (C) 2017 dd2568 : Project submitted for Udacity Android Developer Nanodegree.
+ */
 package com.example.uadnd.cou8901.popularmoviesapp1;
 
-/**
- * Created by dd2568 on 4/15/2017.
- */
 
-/**
+/*
  * Created by dd2568 on 4/16/2017.
  *
  {
@@ -44,23 +44,26 @@ package com.example.uadnd.cou8901.popularmoviesapp1;
 
 
 public class MovieDbMovie {
-    //Attributes from MovieDb
-    String posterPath;  // "/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg"
-    boolean adult;
-    String overview;
-    String releaseDate;
-    long [] genreIds;
-    String id;
-    String originalTitle;
-    String originalLanguage;
-    String title;
-    String backdropPath; // "/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg"
-    float popularity;
-    long voteCount;
-    boolean video;
+    /*
+     * MovieDbMovie POJO with all the attributes as found from API calls .
+     * A partial json result is shown above . Not all the attributes are used in this project.
+     */
+    private String posterPath;  // "/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg"
+    private boolean adult;
+    private String overview;
+    private String releaseDate;
+    private long [] genreIds;
+    private String id;
+    private String originalTitle;
+    private String originalLanguage;
+    private String title;
+    private String backdropPath; // "/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg"
+    private float popularity;
+    private long voteCount;
+    private boolean video;
 
-    String voteAverage;
-    String json;   // to be passed to detail activity
+    private String voteAverage;
+    private String json;   // to be passed to detail activity
     public MovieDbMovie() {
 
     }

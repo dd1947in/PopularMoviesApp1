@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2017 dd2568 : Project submitted for Udacity Android Developer Nanodegree.
+ */
 package com.example.uadnd.cou8901.popularmoviesapp1;
 
 import android.os.AsyncTask;
@@ -20,7 +23,9 @@ import java.util.Arrays;
  */
 public class MovieDbMainActivityFragment extends Fragment {
 
-
+    /*
+     * Required Views and Movie DB variables
+     */
     private View rootView;
     private GridView gridView;
     private MovieDbMovieAdapter movieDbMovieAdapter;
@@ -34,31 +39,38 @@ public class MovieDbMainActivityFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
-    public void loadMovieDbData(String movieList) {
 
+    public void loadMovieDbData(String movieList) {
+        /*
+         * Use Async Task to load Movie DB data.
+         */
         new MovieDbQueryTask().execute(movieList);    //Async Task
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /*
+         * onCreateView load data and initialize views
+         */
         loadMovieDbData(currentMovieList);
-
 
         rootView = inflater.inflate(R.layout.fragment_movie_db_main, container, false);
         gridView = (GridView) rootView.findViewById(R.id.movies_grid);
 
         return rootView;
-
-
     }
     public class MovieDbQueryTask extends AsyncTask<String, Void, String> {
+        /*
+         * Async task for loading data from Movie DB
+         */
         @Override
         protected String  doInBackground(String... params) {
+            /*
+             * Get the results in background thread
+             */
             String currentMovieList = params[0];
 
             String moviesJSON;
@@ -73,6 +85,10 @@ public class MovieDbMainActivityFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String moviesJSON) {
+            /*
+             * onPostExecute , if results are available, parse the json result, create and set array
+             * adapter to movie grid view of main activity
+             */
             super.onPostExecute(moviesJSON);
             if(moviesJSON != null){
                 movieDbMovies = MovieDbJsonParser.parseMovieList(moviesJSON);

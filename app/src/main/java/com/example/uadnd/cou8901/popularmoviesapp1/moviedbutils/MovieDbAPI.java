@@ -1,6 +1,7 @@
+/*
+ * Copyright (C) 2017 dd2568 : Project submitted for Udacity Android Developer Nanodegree.
+ */
 package com.example.uadnd.cou8901.popularmoviesapp1.moviedbutils;
-
-
 
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,17 +15,24 @@ import java.net.URL;
 import java.util.Scanner;
 
 
-/**
+/*
  * Created by dd2568 on 4/16/2017.
  */
 
 public class MovieDbAPI {
 
-    public static final String MOVIE_DB_POPULAR_URL="https://api.themoviedb.org/3/movie/popular?api_key="  ; // Ensure V3 API_KEY in res/string.xml;
-    public static final String MOVIE_DB_TOP_RATED_URL="https://api.themoviedb.org/3/movie/top_rated?api_key=" ; // Ensure V3 API_KEY in res/string.xml;
+    /*
+     * Populr & Top Rated URL prefixes
+     * Movie DB V3 API Key should be populated in res/values/strings.xml
+     */
+    private static final String MOVIE_DB_POPULAR_URL="https://api.themoviedb.org/3/movie/popular?api_key="  ; // Ensure V3 API_KEY in res/string.xml;
+    private static final String MOVIE_DB_TOP_RATED_URL="https://api.themoviedb.org/3/movie/top_rated?api_key=" ; // Ensure V3 API_KEY in res/string.xml;
 
     private static final String TAG = MovieDbAPI.class.getName();
 
+    /*
+     * Invoke Movie DB API with fully formed URL
+     */
     public  static String getMoviesJSON(URL movieDbApiUrl)  {
         String jsonResponse = null;
         HttpURLConnection httpUrlCon = null;
@@ -43,9 +51,12 @@ public class MovieDbAPI {
 
             httpUrlCon.disconnect();
         }
-        Log.i(TAG, jsonResponse);
+        //Log.i(TAG, jsonResponse);
         return jsonResponse;
     }
+    /*
+     * Popular Movies local API
+     */
     @Nullable
     public static String getPopularMoviesJSON(String apiKey) {
         try {
@@ -56,6 +67,9 @@ public class MovieDbAPI {
         }
         return  null;
     }
+    /*
+     * Top Rated local API
+     */
     @Nullable
     public static String getTopRatedMoviesJSON(String apiKey) {
         try {

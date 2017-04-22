@@ -1,13 +1,19 @@
+/*
+ * Copyright (C) 2017 dd2568 : Project submitted for Udacity Android Developer Nanodegree.
+ */
 package com.example.uadnd.cou8901.popularmoviesapp1.moviedbutils;
 
-import com.example.uadnd.cou8901.popularmoviesapp1.MovieDbMovie;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.uadnd.cou8901.popularmoviesapp1.MovieDbMovie;
+
 /**
  * Created by dd2568 on 4/16/2017.
+ * Shown below is a partial sample response from Movie DB
  *
  {
  "page": 1,
@@ -46,10 +52,18 @@ import org.json.JSONObject;
 
 public  class MovieDbJsonParser {
     private static final String POSTER_PREFIX_URL = "http://image.tmdb.org/t/p/w185"; // + poster_path ;
+
+    /*
+     * Keys in the JSON Results
+     */
     private static final String RESULTS = "results";
     private static final String TOTAL_RESULTS = "total_results";
     private static final String TOTAL_PAGES = "total_pages";
 
+    /*
+     * Keys in JSON movie.
+     * Not all the keys are used in this project.
+     */
     private static final String POSTER_PATH = "poster_path";
     private static final String ADULT = "adult";
     private static final String OVERVIEW = "overview";
@@ -67,6 +81,9 @@ public  class MovieDbJsonParser {
 
 
     public static MovieDbMovie [] parseMovieList(String jsonString) {
+        /*
+         * Do Json parse of Movie DB response
+         */
         String TAG = MovieDbMovie.class.getSimpleName();
         MovieDbMovie [] movieDbMovies = null;
         try {
@@ -77,6 +94,9 @@ public  class MovieDbJsonParser {
                 int numMovies = movieArray.length();
                 movieDbMovies = new MovieDbMovie[numMovies];
                 for(int i = 0; i < numMovies; i++){
+                    /*
+                     * Parse one movie at a time
+                     */
                     JSONObject jsonMovie = movieArray.getJSONObject(i);
                     movieDbMovies[i] = parseMovie(jsonMovie.toString());
                 }
@@ -88,11 +108,14 @@ public  class MovieDbJsonParser {
 
     }
     public static MovieDbMovie  parseMovie(String jsonString) {
+        /*
+         * Do Json parse of one movie json string
+         */
         String TAG = MovieDbMovie.class.getSimpleName();
         MovieDbMovie  movieDbMovie = null;
         try {
             JSONObject jsonMovie = new JSONObject(jsonString);
-            movieDbMovie = new MovieDbMovie();
+            movieDbMovie = new MovieDbMovie(); // Instantiate a  MovieDbMovie object
             movieDbMovie.setPosterPath(jsonMovie.getString(POSTER_PATH));
             movieDbMovie.setOriginalTitle(jsonMovie.getString(ORIGINAL_TITLE));
             movieDbMovie.setOverview((jsonMovie.getString(OVERVIEW)));
@@ -103,7 +126,7 @@ public  class MovieDbJsonParser {
             movieDbMovie.setOriginalTitle(jsonMovie.getString(TITLE));
             movieDbMovie.setTitle(jsonMovie.getString(TITLE));
             movieDbMovie.setVoteAverage(jsonMovie.getString(VOTE_AVERAGE));
-            movieDbMovie.setJson(jsonString);
+            movieDbMovie.setJson(jsonString); // set json string as json attribute
         } catch (JSONException e) {
             e.printStackTrace();
         }
